@@ -117,24 +117,64 @@
 .toast{position:fixed;bottom:24px;right:24px;z-index:1000;padding:12px 20px;border:2px solid var(--ink);border-radius:8px;background:var(--yellow);color:var(--ink);font-size:.88rem;font-weight:850;box-shadow:4px 4px 0 var(--ink);transform:translateY(150%);transition:transform .25s ease-out;pointer-events:none}
 .toast.show{transform:translateY(0)}
 
-/* PRINT STYLESHEET */
+/* PRINT STYLESHEET - STRICT 1-PAGE A4 LANDSCAPE */
 @media print {
-  body * { visibility: hidden !important; }
-  #printable-certificate, #printable-certificate * { visibility: visible !important; }
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+  html, body {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    overflow: hidden !important;
+  }
+  header, footer, .hero, .analyzer-section, .purpose, .values, .initiative, .contact, .toast, .skip-link, .cert-controls-card, .analyzer-head, .site-nav, .menu-toggle, .badge-row {
+    display: none !important;
+  }
+  .certificate-section {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    border: none !important;
+  }
+  .cert-workspace, .cert-preview-card {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
   #printable-certificate {
-    position: fixed !important;
-    inset: 0 !important;
+    position: relative !important;
     width: 100vw !important;
     height: 100vh !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
     margin: 0 !important;
-    padding: 35px !important;
+    padding: 28px !important;
     border: none !important;
     box-shadow: inset 0 0 0 10px #13233f, inset 0 0 0 14px #f7c948 !important;
-    background: #fff !important;
+    background: #ffffff !important;
+    page-break-inside: avoid !important;
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+    break-inside: avoid !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    box-sizing: border-box !important;
   }
-  @page { size: landscape; margin: 0; }
+  #printable-certificate.theme-emerald {
+    box-shadow: inset 0 0 0 10px #064e3b, inset 0 0 0 14px #10b981 !important;
+  }
+  #printable-certificate.theme-crimson {
+    box-shadow: inset 0 0 0 10px #881337, inset 0 0 0 14px #f43f5e !important;
+  }
 }
 
 /* COMMON SECTION STYLES */
