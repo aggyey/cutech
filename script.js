@@ -554,7 +554,7 @@
     // Watermark
     ctx.fillStyle = '#9ca3af';
     ctx.font = '700 20px Inter, sans-serif';
-    ctx.fillText('Verified by Cutech Pty Ltd • ReadingWillow.com', canvas.width / 2, 1260);
+    ctx.fillText('Presented through Cutech Pty Ltd • ReadingWillow.com', canvas.width / 2, 1260);
 
     // Trigger Download
     const link = document.createElement('a');
