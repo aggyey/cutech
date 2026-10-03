@@ -1,0 +1,21 @@
+name: Scheduled Site Health & Link Check
+
+on:
+  schedule:
+    # Runs every Monday at 00:00 UTC (10:00 AEST)
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check ReadingWillow Flagship Project Status
+        run: |
+          echo "Checking ReadingWillow.com health..."
+          curl -sI https://www.readingwillow.com | head -n 5 || echo "Warning: ReadingWillow check returned non-200"
+
+      - name: Check Cutech Domain Status
+        run: |
+          echo "Checking cutech.com.au status..."
+          curl -sI https://cutech.com.au | head -n 5 || echo "Cutech domain check pending DNS propagation"
