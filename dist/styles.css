@@ -68,63 +68,162 @@
 .toast{position:fixed;bottom:24px;right:24px;z-index:1000;padding:12px 20px;border:2px solid var(--ink);border-radius:8px;background:var(--yellow);color:var(--ink);font-size:.88rem;font-weight:850;box-shadow:4px 4px 0 var(--ink);transform:translateY(150%);transition:transform .25s ease-out;pointer-events:none}
 .toast.show{transform:translateY(0)}
 
-/* PRINT STYLESHEET - STRICT 1-PAGE A4 LANDSCAPE */
+/* PRINT STYLESHEET - PRECISE 100% CLEAN A4 LANDSCAPE FIT */
 @media print {
   @page {
     size: A4 landscape;
     margin: 0;
   }
+  *, *::before, *::after {
+    visibility: hidden !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
   html, body {
-    width: 100% !important;
-    height: 100% !important;
+    width: 100vw !important;
+    height: 100vh !important;
     margin: 0 !important;
     padding: 0 !important;
     background: #ffffff !important;
     overflow: hidden !important;
   }
-  header, footer, .hero, .faq-section, .purpose, .values, .initiative, .contact, .toast, .skip-link, .cert-controls-card, .cert-head, .site-nav, .menu-toggle, .badge-row {
-    display: none !important;
+  
+  /* Make only the certificate and all its descendants visible */
+  #printable-certificate,
+  #printable-certificate * {
+    visibility: visible !important;
   }
-  .certificate-section {
-    padding: 0 !important;
-    margin: 0 !important;
-    background: #ffffff !important;
-    border: none !important;
-  }
-  .cert-workspace, .cert-preview-card {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-    background: #ffffff !important;
-  }
+  
   #printable-certificate {
-    position: relative !important;
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
     margin: 0 !important;
-    padding: 28px !important;
-    border: none !important;
+    padding: 24px 32px !important;
+    box-sizing: border-box !important;
+    background: #fffdfa !important;
+    aspect-ratio: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
     box-shadow: inset 0 0 0 10px #13233f, inset 0 0 0 14px #f7c948 !important;
-    background: #ffffff !important;
     page-break-inside: avoid !important;
     page-break-before: avoid !important;
     page-break-after: avoid !important;
     break-inside: avoid !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
-    box-sizing: border-box !important;
   }
   #printable-certificate.theme-emerald {
     box-shadow: inset 0 0 0 10px #064e3b, inset 0 0 0 14px #10b981 !important;
   }
   #printable-certificate.theme-crimson {
     box-shadow: inset 0 0 0 10px #881337, inset 0 0 0 14px #f43f5e !important;
+  }
+  #printable-certificate .cert-inner-border {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 16px 20px 10px !important;
+    border: 1.5px dashed #cbd5e1 !important;
+    box-sizing: border-box !important;
+  }
+  #printable-certificate .cert-header {
+    margin-bottom: 2px !important;
+  }
+  #printable-certificate .cert-org-name {
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.18em !important;
+    margin-bottom: 2px !important;
+    display: block !important;
+  }
+  #printable-certificate .cert-main-title {
+    font-size: 34px !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.05 !important;
+    margin: 2px 0 !important;
+  }
+  #printable-certificate .cert-subtitle {
+    font-size: 10px !important;
+    letter-spacing: 0.12em !important;
+    margin: 2px 0 0 !important;
+  }
+  #printable-certificate .cert-recipient {
+    font-size: 38px !important;
+    font-weight: 900 !important;
+    line-height: 1.1 !important;
+    margin: 4px 0 !important;
+    padding-bottom: 2px !important;
+    border-bottom: 3px solid var(--yellow) !important;
+    min-width: 260px !important;
+    display: inline-block !important;
+  }
+  #printable-certificate .cert-for-text {
+    font-size: 9px !important;
+    letter-spacing: 0.12em !important;
+    margin: 2px 0 !important;
+  }
+  #printable-certificate .cert-award-title {
+    font-size: 22px !important;
+    font-weight: 850 !important;
+    margin: 2px 0 !important;
+    line-height: 1.15 !important;
+  }
+  #printable-certificate .cert-reason-text {
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+    max-width: 650px !important;
+    margin: 2px auto 6px !important;
+  }
+  #printable-certificate .cert-footer {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    padding: 0 15px 2px !important;
+    margin-top: auto !important;
+  }
+  #printable-certificate .cert-sig-block {
+    min-width: 140px !important;
+  }
+  #printable-certificate .sig-line {
+    width: 130px !important;
+    height: 1.5px !important;
+    background: #13233f !important;
+    margin-bottom: 3px !important;
+  }
+  #printable-certificate .sig-name {
+    font-size: 13px !important;
+  }
+  #printable-certificate .sig-title {
+    font-size: 9px !important;
+  }
+  #printable-certificate .seal-circle {
+    width: 62px !important;
+    height: 62px !important;
+  }
+  #printable-certificate .seal-star {
+    font-size: 14px !important;
+  }
+  #printable-certificate .seal-text {
+    font-size: 6.5px !important;
+  }
+  #printable-certificate .seal-sub {
+    font-size: 5.5px !important;
+  }
+  #printable-certificate .cert-watermark {
+    position: relative !important;
+    bottom: auto !important;
+    margin-top: 2px !important;
+    font-size: 8.5px !important;
   }
 }
 
